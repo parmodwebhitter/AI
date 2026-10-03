@@ -123,6 +123,30 @@ function createTypingIndicator() {
 }
 
 
+/* Only one reply runs at a time: a new question stops the previous one where it is. */
+let copilotActive = null;
+
+function stopCopilotReply() {
+
+  if (!copilotActive) return;
+
+  clearTimeout(copilotActive.timer);
+
+  const msg = copilotActive.el;
+
+  if (msg.querySelector(".copilot-typing") || !msg.textContent.trim()) {
+    msg.textContent = "Stopped.";
+  } else {
+    msg.textContent = msg.textContent.trimEnd() + " …";
+  }
+
+  msg.classList.add("is-stopped");
+
+  copilotActive = null;
+
+}
+
+
 function addCopilotMessage(question) {
 
   const chatBody = document.getElementById("chatBody");
@@ -132,6 +156,8 @@ function addCopilotMessage(question) {
   if (!question || !question.trim()) return;
 
   const cleanQuestion = question.trim();
+
+  stopCopilotReply();
 
   /* -------------------------
      USER MESSAGE
@@ -152,7 +178,7 @@ function addCopilotMessage(question) {
 
   const aiRow = document.createElement("div");
 
-  aiRow.className = "copilot-ai-row";
+  aiRow.className = "copilot-ai-row copilot-ai-row--typed";
 
   aiRow.innerHTML = `
     ${createCopilotAvatar()}
@@ -185,7 +211,11 @@ function addCopilotMessage(question) {
      TYPE RESPONSE
      ------------------------- */
 
-  setTimeout(() => {
+  const job = { el: aiMessage, timer: 0 };
+
+  copilotActive = job;
+
+  job.timer = setTimeout(() => {
 
     aiMessage.textContent = "";
 
@@ -203,7 +233,11 @@ function addCopilotMessage(question) {
 
       if (index < response.length) {
 
-        setTimeout(typeText, 16);
+        job.timer = setTimeout(typeText, 16);
+
+      } else if (copilotActive === job) {
+
+        copilotActive = null;
 
       }
 
@@ -282,12 +316,16 @@ copilotSuggestions.forEach(button => {
     els.forEach(el => io.observe(el));
   };
 
+  /* scrollbar width, so full-bleed panels can use 100vw without overflow */
+  const setSb = () => document.documentElement.style.setProperty('--sb', (innerWidth - document.documentElement.clientWidth) + 'px');
+  setSb(); addEventListener('resize', setSb);
+
   /* ---------- Nav: scroll state, progress, menu, dropdown ---------- */
   const nav = $('#nav'), burger = $('.nav__burger'), drop = $('.nav__drop'), dropBtn = $('.nav__drop > button');
   const progress = $('.progress'), totop = $('.totop');
   const onScroll = () => {
     const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
-    nav.classList.toggle('scrolled', y > 20);
+    nav.classList.toggle('scrolled', y > 40);
     progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
     totop.classList.toggle('show', y > 800);
     stackScale();

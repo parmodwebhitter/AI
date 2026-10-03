@@ -1903,3 +1903,9 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .projs__track.is-drag{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto}
 .projs__track.is-drag .proj{pointer-events:none}
 .projs__bar span{transform:none!important;transition:width .3s var(--out)}
+#faq .sec-head{margin-bottom:36px}#blog .ind__foot{margin-top:28px}
+/* final CTA heading a little smaller */
+.final h2.h-xl{font-size:clamp(40px,6vw,84px)}
+/* alternate backgrounds from testimonials down: grey / white */
+#pricing,#blog{background:#fff}
+#projects,#faq{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}

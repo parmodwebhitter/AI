@@ -399,7 +399,8 @@ copilotSuggestions.forEach(button => {
   }));
 
   /* ---------- Problem: drag-to-compare ---------- */
-  const cmp = $('#compare'), range = $('input', cmp);
+  const cmp = $('#compare'), range = cmp && $('input', cmp);
+  if (cmp) {
   const setPos = v => cmp.style.setProperty('--pos', `${v}%`);
   range.addEventListener('input', () => setPos(range.value));
   if (!calm) onView([cmp], () => {          // little intro sweep so people notice it slides
@@ -409,6 +410,7 @@ copilotSuggestions.forEach(button => {
       requestAnimationFrame(tick); };
     setTimeout(go, 500);
   }, { threshold: .5 });
+  }
 
   /* ---------- Results slider: arrows, drag, progress bar ---------- */
   $$('[data-slider]').forEach(sl => {
@@ -443,7 +445,9 @@ copilotSuggestions.forEach(button => {
   }
 
   /* ---------- Testimonials: sliding quotes, autoplay, swipe ---------- */
-  const qs = $('#quotes'), qTrack = $('.quotes__track', qs), people = $$('.person', qs);
+  const qs = $('#quotes');
+  if (qs) {
+  const qTrack = $('.quotes__track', qs), people = $$('.person', qs);
   let qi = 0, qTimer;
   const showQ = i => { qi = (i + people.length) % people.length; qTrack.style.transform = `translateX(-${qi * 100}%)`;
     people.forEach((p, n) => { p.classList.remove('on'); if (n === qi) { void p.offsetWidth; p.classList.add('on'); } p.setAttribute('aria-pressed', n === qi); });
@@ -456,6 +460,7 @@ copilotSuggestions.forEach(button => {
   $('.quotes__viewport', qs).addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   $('.quotes__viewport', qs).addEventListener('touchend', e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 40) { showQ(qi + (dx < 0 ? 1 : -1)); auto(); } tx = null; });
   showQ(0); auto();
+  }
 
   /* ---------- Blog: floating image follows the cursor ---------- */
   $$('.post').forEach(p => p.addEventListener('pointermove', e => {
@@ -573,4 +578,90 @@ copilotSuggestions.forEach(button => {
   segs.forEach(seg => { const path = seg.querySelector('path'); path.addEventListener('pointerenter', () => on(seg)); path.addEventListener('pointerleave', off); });
   core.addEventListener('pointerenter', () => wheel.classList.add('paused'));
   core.addEventListener('pointerleave', off);
+})();
+/* ---------- Common issues: tabs (click + arrow keys) ---------- */
+(() => {
+  const tabs = [...document.querySelectorAll('.issues .issue')];
+  if (!tabs.length) return;
+  const select = t => {
+    tabs.forEach(x => {
+      const on = x === t;
+      x.setAttribute('aria-selected', on);
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', e => {
+      const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+      if (!d) return;
+      e.preventDefault();
+      const n = tabs[(i + d + tabs.length) % tabs.length];
+      n.focus(); select(n);
+    });
+  });
+})();
+
+/* ---------- Process: release pinned heading together with the card stack ---------- */
+(() => {
+  const pin = document.querySelector('.process__pin');
+  if (!pin) return;
+  const head = pin.querySelector('.sec-head'), cards = pin.querySelectorAll('.stack__card');
+  const last = cards[cards.length - 1];
+  const fit = () => {
+    const hs = getComputedStyle(head), cs = getComputedStyle(last);
+    const headTop = parseFloat(hs.top) || 0, headH = head.offsetHeight;
+    pin.style.setProperty('--headh', headH + 'px');
+    // last card un-sticks when its bottom (cardTop + height) meets the stack's end;
+    // the heading track must end the same distance above the pin's bottom.
+    const rel = (parseFloat(cs.top) || 0) + last.offsetHeight - (headTop + headH);
+    pin.style.setProperty('--rel', Math.max(0, rel) + 'px');
+  };
+  fit();
+  addEventListener('resize', fit);
+  addEventListener('load', fit);
+})();
+
+/* ---------- One-time projects: arrows, mouse drag, fill bar ---------- */
+(() => {
+  const t = document.querySelector('.projs__track');
+  if (!t) return;
+  const bar = document.querySelector('.projs__bar span');
+  const step = () => (t.querySelector('.proj')?.offsetWidth || 300) + 18;
+  document.querySelector('[data-pprev]').addEventListener('click', () => t.scrollBy({ left: -step(), behavior: 'smooth' }));
+  document.querySelector('[data-pnext]').addEventListener('click', () => t.scrollBy({ left: step(), behavior: 'smooth' }));
+
+  // bar grows from the left: shows how much of the row has been seen
+  const upd = () => {
+    const seen = (t.scrollLeft + t.clientWidth) / t.scrollWidth;
+    bar.style.width = Math.min(100, seen * 100) + '%';
+  };
+  t.addEventListener('scroll', upd, { passive: true });
+  addEventListener('resize', upd); upd();
+
+  // click-and-drag to scroll with a mouse (touch already swipes natively)
+  let down = false, startX = 0, startL = 0, moved = false;
+  t.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    down = true; moved = false; startX = e.clientX; startL = t.scrollLeft;
+    t.classList.add('is-drag');
+  });
+  addEventListener('pointermove', e => {
+    if (!down) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 4) moved = true;
+    t.scrollLeft = startL - dx;
+  });
+  const end = () => {
+    if (!down) return;
+    down = false; t.classList.remove('is-drag');
+    // snap to the nearest card after dragging
+    const s = step(); t.scrollTo({ left: Math.round(t.scrollLeft / s) * s, behavior: 'smooth' });
+  };
+  addEventListener('pointerup', end);
+  addEventListener('pointercancel', end);
+  // don't follow a link when the mouse was dragging
+  t.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  t.addEventListener('dragstart', e => e.preventDefault());
 })();

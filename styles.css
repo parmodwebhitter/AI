@@ -712,9 +712,7 @@ button{cursor:pointer;background:none;border:0}
 svg.i{width:20px;height:20px;flex-shrink:0}
 
 /* Background grain + glow */
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(900px 600px at 85% -10%,rgba(139,123,255,.10),transparent 60%),
-             radial-gradient(700px 500px at -10% 30%,rgba(29,78,216,.22),transparent 60%)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:none}
 
 /* =========================================================
    3. SHARED UI
@@ -2236,3 +2234,93 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .sv__msg{display:grid;gap:8px;justify-items:start;padding:12px 16px;border:1px solid var(--line-2);border-radius:4px 16px 16px 16px;background:#fff;box-shadow:0 4px 14px rgba(11,27,63,.05)}
 .sv__msg p{display:block!important;margin:0!important;padding:0!important;border:0!important;background:none!important;font-size:14px;line-height:1.55;color:var(--text)}
 .sv__msg b{color:var(--lime-d)}
+/* CMS flip cards: real logos, fuller front, slower flip */
+.flip__inner{transition:transform 1.3s cubic-bezier(.22,.7,.2,1)}
+.flip__front{background:radial-gradient(260px 180px at 100% 0%,color-mix(in srgb,var(--brand,#1d4ed8) 10%,transparent),transparent 70%),#fff}
+.flip__logo{width:60px;height:60px;border-radius:18px;background:#fff;border:1px solid var(--line-2);box-shadow:0 10px 24px color-mix(in srgb,var(--brand,#1d4ed8) 22%,transparent)}
+.flip__logo img{width:34px;height:34px;border-radius:6px}
+.flip__front h3{margin-top:14px}
+.flip__tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+.flip__tags li{padding:5px 10px;border-radius:999px;background:color-mix(in srgb,var(--brand,#1d4ed8) 9%,#fff);border:1px solid color-mix(in srgb,var(--brand,#1d4ed8) 20%,transparent);font-size:12px;font-weight:500;color:var(--text)}
+.flip__hint{margin-top:12px}
+.flip{height:300px}
+@media (max-width:640px){.flip{height:280px}}
+/* CMS flip cards: narrower grid, bigger gaps, centered front */
+.flips{max-width:1020px;margin-inline:auto;gap:28px}
+.flip__front{align-items:center;text-align:center}
+.flip__front .flip__n{align-self:flex-start}
+.flip__front .flip__logo{margin-top:auto}
+.flip__tags{justify-content:center}
+@media (max-width:640px){.flips{gap:18px}}
+/* CMS flip cards: fixed rows so every card lines up */
+.flip{height:330px}
+.flip__front .flip__logo{margin-top:14px}
+.flip__front h3{display:flex;align-items:center;justify-content:center;min-height:2.3em;margin-top:12px;font-size:21px;line-height:1.15}
+.flip__type{margin-top:2px;font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--brand,var(--muted))}
+.flip__tags{margin-top:14px;min-height:62px;align-content:flex-start}
+.flip__front .flip__hint{margin-top:auto;padding-top:12px;border-top:1px dashed var(--line-2);width:100%;justify-content:center}
+@media (max-width:640px){.flip{height:320px}}
+/* why-us: founder card + mini comparison fixes */
+.founder blockquote.founder__quote,.founder__quote{margin:22px 0 0;padding:16px 20px;border-left:3px solid var(--lime);border-radius:0 14px 14px 0;background:rgba(255,255,255,.06);font:italic 500 17px/1.55 var(--body);letter-spacing:0;color:#eef2fb}
+.founder__photo{background:rgba(255,255,255,.06);border-color:rgba(147,197,253,.3);color:#b4c4ee}
+.founder__role{color:#a9b6d6}
+.vs-table--mini th,.vs-table--mini td{vertical-align:middle}
+.vs-table--mini tbody th{text-align:left}
+
+/* ===== final banner: rocket launch ===== */
+.rk{overflow:hidden}
+.rk svg{overflow:visible}
+.rk *{transform-box:fill-box}
+.rk__ship{transform-box:view-box;transform-origin:300px 200px}
+.rk__body{transform-origin:50% 100%}
+.rk__flame{transform-origin:50% 0;transform:scaleY(.3);opacity:.6}
+.rk__glow{opacity:0;transform-origin:50% 50%}
+.rk__sparks circle{opacity:0;transform-origin:50% 50%}
+.rk__streaks{opacity:0}
+.rk__puff{transform-origin:50% 100%}
+.rk__stars circle{opacity:.45}
+
+/* sequence starts once the banner is revealed */
+.rk.in .rk__body{animation:rk-shake .08s linear 6 .3s}
+.rk.in .rk__ship{animation:rk-lift 1.4s cubic-bezier(.5,0,.3,1) .8s forwards,rk-hover 2.6s ease-in-out 2.2s infinite}
+.rk.in .rk__flame{animation:rk-ignite .5s ease-out .3s forwards,rk-flicker .14s ease-in-out .8s infinite alternate}
+.rk.in .rk__flame--in{animation-delay:.3s,.85s}
+.rk.in .rk__glow{animation:rk-glow 1.2s ease-in-out .5s infinite alternate}
+.rk.in .rk__puff{animation:rk-puff 1.6s ease-out .6s forwards}
+.rk.in .rk__puff--a{animation-delay:.5s}
+.rk.in .rk__puff--b{animation-delay:.7s}
+.rk.in .rk__streaks{animation:rk-streak .9s linear 2s infinite}
+.rk.in .rk__stars circle{animation:rk-twinkle 2.4s ease-in-out infinite}
+.rk.in .rk__stars circle:nth-child(2n){animation-delay:1.2s}
+.rk.in .rk__sparks circle{animation:rk-spark 1s ease-out .6s infinite}
+.rk__sparks circle:nth-child(1){--sx:-46px;--sy:60px}
+.rk__sparks circle:nth-child(2){--sx:40px;--sy:70px;animation-delay:.75s!important}
+.rk__sparks circle:nth-child(3){--sx:-20px;--sy:85px;animation-delay:.9s!important}
+.rk__sparks circle:nth-child(4){--sx:58px;--sy:44px;animation-delay:1.05s!important}
+.rk__sparks circle:nth-child(5){--sx:-62px;--sy:38px;animation-delay:1.2s!important}
+.rk__sparks circle:nth-child(6){--sx:16px;--sy:92px;animation-delay:1.35s!important}
+
+@keyframes rk-shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-2px) rotate(-.6deg)}75%{transform:translateX(2px) rotate(.6deg)}}
+@keyframes rk-lift{to{transform:translateY(-36px)}}
+@keyframes rk-hover{0%,100%{transform:translateY(-36px)}50%{transform:translateY(-46px)}}
+@keyframes rk-ignite{to{transform:scaleY(1);opacity:1}}
+@keyframes rk-flicker{from{transform:scaleY(.85) scaleX(.95)}to{transform:scaleY(1.15) scaleX(1.05)}}
+@keyframes rk-glow{from{opacity:.5;transform:scale(.9)}to{opacity:1;transform:scale(1.2)}}
+@keyframes rk-puff{0%{transform:scale(.6);opacity:0}30%{opacity:1}100%{transform:scale(1.25) translateY(10px);opacity:.85}}
+@keyframes rk-streak{0%{transform:translateY(-40px);opacity:0}30%{opacity:.5}100%{transform:translateY(90px);opacity:0}}
+@keyframes rk-twinkle{0%,100%{opacity:.25}50%{opacity:.8}}
+@keyframes rk-spark{0%{transform:translate(0,0) scale(1);opacity:1}100%{transform:translate(var(--sx),var(--sy)) scale(.2);opacity:0}}
+
+@media (prefers-reduced-motion:reduce){
+  .rk.in *{animation:none!important}
+  .rk__ship{transform:translateY(-36px)}
+  .rk__flame{transform:none;opacity:1}
+}
+/* footer: services in two columns so it matches the other columns' height */
+.footer__grid{grid-template-columns:1.2fr 1.9fr .9fr 1.1fr}
+.footer__svc ul{grid-template-columns:1fr 1fr;column-gap:28px}
+@media (max-width:960px){.footer__grid{grid-template-columns:1fr 1fr}.footer__svc{grid-column:1/-1}}
+@media (max-width:640px){.footer__grid{grid-template-columns:1fr}}
+/* footer wordmark: fills with brand blue on hover */
+.footer__word{background:linear-gradient(#1d4ed8,#1d4ed8) 0 0/100% 0% no-repeat;-webkit-background-clip:text;background-clip:text;transition:background-size .9s var(--out),-webkit-text-stroke-color .4s}
+.footer__word:hover{background-size:100% 100%;-webkit-text-stroke-color:transparent}

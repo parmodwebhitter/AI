@@ -321,7 +321,7 @@ copilotSuggestions.forEach(button => {
   setSb(); addEventListener('resize', setSb);
 
   /* ---------- Nav: scroll state, progress, menu, dropdown ---------- */
-  const nav = $('#nav'), burger = $('.nav__burger'), drop = $('.nav__drop'), dropBtn = $('.nav__drop > button');
+  const nav = $('#nav'), burger = $('.nav__burger');
   const progress = $('.progress'), totop = $('.totop');
   const onScroll = () => {
     const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
@@ -335,14 +335,19 @@ copilotSuggestions.forEach(button => {
   const setMenu = open => { nav.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); };
   burger.addEventListener('click', () => setMenu(!nav.classList.contains('menu-open')));
   $$('.nav__panel a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-  const setDrop = open => { drop.classList.toggle('open', open); dropBtn.setAttribute('aria-expanded', open); };
-  dropBtn.addEventListener('click', e => { e.stopPropagation(); setDrop(!drop.classList.contains('open')); });
-  if (matchMedia('(hover:hover) and (min-width:961px)').matches) {
-    drop.addEventListener('mouseenter', () => setDrop(true));
-    drop.addEventListener('mouseleave', () => setDrop(false));
-  }
-  document.addEventListener('click', e => { if (!drop.contains(e.target)) setDrop(false); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { setDrop(false); setMenu(false); } });
+  const drops = $$('.nav__drop');
+  const setDrop = (d, open) => { d.classList.toggle('open', open); d.querySelector(':scope > button').setAttribute('aria-expanded', open); };
+  const closeDrops = except => drops.forEach(d => d !== except && setDrop(d, false));
+  const hover = matchMedia('(hover:hover) and (min-width:961px)').matches;
+  drops.forEach(d => {
+    d.querySelector(':scope > button').addEventListener('click', e => { e.stopPropagation(); closeDrops(d); setDrop(d, !d.classList.contains('open')); });
+    if (hover) {
+      d.addEventListener('mouseenter', () => { closeDrops(d); setDrop(d, true); });
+      d.addEventListener('mouseleave', () => setDrop(d, false));
+    }
+  });
+  document.addEventListener('click', e => drops.forEach(d => { if (!d.contains(e.target)) setDrop(d, false); }));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeDrops(); setMenu(false); } });
 
   /* ---------- Split headlines into words for the slide-up reveal ---------- */
   $$('[data-words]').forEach(h => {

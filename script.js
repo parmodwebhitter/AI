@@ -670,3 +670,38 @@ copilotSuggestions.forEach(button => {
   t.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
   t.addEventListener('dragstart', e => e.preventDefault());
 })();
+
+/* ===== before / after AI SEO toggle ===== */
+(() => {
+  const ba = document.getElementById('ba');
+  if (!ba) return;
+  const toggle = ba.querySelector('.ba__toggle');
+  const swaps = ba.querySelectorAll('[data-off][data-on]');
+  const num = ba.querySelector('.ba__num');
+  let timer, raf;
+  const countTo = (from, to) => {
+    cancelAnimationFrame(raf);
+    const t0 = performance.now(), dur = 1000;
+    const step = now => {
+      const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+      num.textContent = Math.round(from + (to - from) * e);
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+  };
+  const set = on => {
+    if (ba.classList.contains('is-on') === on) return;
+    ba.classList.toggle('is-on', on);
+    toggle.setAttribute('aria-checked', on);
+    toggle.setAttribute('aria-label', on ? 'Show results without AI SEO' : 'Show results with AI SEO');
+    ba.querySelector('.ba__view--off').setAttribute('aria-hidden', on);
+    ba.querySelector('.ba__view--on').setAttribute('aria-hidden', !on);
+    countTo(+num.dataset[on ? 'off' : 'on'], +num.dataset[on ? 'on' : 'off']);
+    const text = swaps.length ? [...swaps].filter(el => el !== num) : [];
+    text.forEach(el => el.classList.add('is-swap'));
+    clearTimeout(timer);
+    timer = setTimeout(() => text.forEach(el => { el.textContent = el.dataset[on ? 'on' : 'off']; el.classList.remove('is-swap'); }), 250);
+  };
+  toggle.addEventListener('click', () => set(!ba.classList.contains('is-on')));
+  ba.querySelectorAll('[data-ba]').forEach(b => b.addEventListener('click', () => set(b.dataset.ba === 'on')));
+})();

@@ -2324,3 +2324,5 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 /* footer wordmark: fills with brand blue on hover */
 .footer__word{background:linear-gradient(#1d4ed8,#1d4ed8) 0 0/100% 0% no-repeat;-webkit-background-clip:text;background-clip:text;transition:background-size .9s var(--out),-webkit-text-stroke-color .4s}
 .footer__word:hover{background-size:100% 100%;-webkit-text-stroke-color:transparent}
+.footer__word{-webkit-text-stroke:1.2px rgba(15,18,40,.28)}
+

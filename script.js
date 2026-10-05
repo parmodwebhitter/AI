@@ -705,3 +705,37 @@ copilotSuggestions.forEach(button => {
   toggle.addEventListener('click', () => set(!ba.classList.contains('is-on')));
   ba.querySelectorAll('[data-ba]').forEach(b => b.addEventListener('click', () => set(b.dataset.ba === 'on')));
 })();
+
+/* ===== services tab switcher (auto-advances until the visitor interacts) ===== */
+(() => {
+  const root = document.getElementById('svx');
+  if (!root) return;
+  const tabs = [...root.querySelectorAll('.svx__tab')];
+  const panels = tabs.map(t => document.getElementById(t.getAttribute('aria-controls')));
+  let i = 0, timer, manual = false;
+  const show = (n, focus) => {
+    i = (n + tabs.length) % tabs.length;
+    tabs.forEach((t, k) => {
+      const on = k === i;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      panels[k].hidden = !on;
+      panels[k].classList.toggle('is-active', on);
+    });
+    if (focus) tabs[i].focus();
+    schedule();
+  };
+  const schedule = () => {
+    clearTimeout(timer);
+    if (!manual && !matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setTimeout(() => show(i + 1), 7000);
+  };
+  tabs.forEach((t, k) => t.addEventListener('click', () => { manual = true; root.classList.add('is-manual'); show(k); }));
+  root.querySelector('.svx__tabs').addEventListener('keydown', e => {
+    const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+    if (d) { e.preventDefault(); manual = true; root.classList.add('is-manual'); show(i + d, true); }
+  });
+  root.addEventListener('mouseenter', () => { root.classList.add('is-paused'); clearTimeout(timer); });
+  root.addEventListener('mouseleave', () => { root.classList.remove('is-paused'); show(i); });
+  new IntersectionObserver(([e]) => e.isIntersecting ? schedule() : clearTimeout(timer)).observe(root);
+})();

@@ -2645,3 +2645,14 @@ section.hero,section.trust,section.platforms,section.section,section.final{isola
   #services .sv2__head .pb__grad{display:inline}
 }
 @media (min-width:1100px){#services .sv2__head .pb__grad{display:block}}
+
+/* nav: keep every link on one line */
+.nav__links>li>a,.nav__drop>button{white-space:nowrap}
+.nav__links{gap:2px}
+@media (min-width:961px) and (max-width:1250px){.nav__links>li>a,.nav__drop>button{padding:9px 10px;font-size:14px}.nav__bar{gap:12px}}
+
+/* services: bolder check icons */
+.sv2__list{gap:12px}
+.sv2__list li{display:flex;align-items:center;min-height:24px;padding-left:36px;font-size:15.5px;line-height:1.45}
+.sv2__list li::before{content:"";top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:#16a34a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat;box-shadow:0 0 0 4px #dcfce7}
+.sv2__card .chips{display:flex;flex-wrap:wrap;gap:10px}

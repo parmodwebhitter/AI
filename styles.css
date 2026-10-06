@@ -2411,3 +2411,118 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .pb__aio-src{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .pb__aio-src span{padding:3px 9px;border-radius:999px;background:#fff;box-shadow:0 0 0 1px #e2e8f0;font-size:11.5px;color:#475569}
 .pb__aio .pb__miss{margin-top:10px}
+
+/* stats: slightly smaller, all black */
+.stat__n{font-size:clamp(30px,3vw,42px);color:#000}
+.stat__n em{color:#000}
+.stat__l{color:#000}
+
+/* problem heading: tighter, two-tone, pill tag */
+#problem{position:relative}
+#problem::before{content:"";position:absolute;inset:0 0 auto;height:520px;z-index:-1;background:radial-gradient(60% 70% at 50% 0,rgba(79,70,229,.08),transparent 70%)}
+.pb__head{max-width:980px}
+.pb__head .tag{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:999px;background:#eef0ff;color:#4338ca;font:600 12.5px/1 var(--body);letter-spacing:.08em}
+.pb__head .tag::before{display:none}
+.pb__head h2{font-size:clamp(30px,3.6vw,50px);line-height:1.12;letter-spacing:-.03em;color:#0f172a}
+.pb__grad{display:block}
+.pb__grad .w>span{background:linear-gradient(90deg,#4f46e5,#2563eb 60%,#06b6d4);-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.06em}
+.pb__head .lead{max-width:640px;font-size:clamp(16px,1.3vw,18px);line-height:1.7;color:#475569}
+.pb__head .lead::after{content:"";display:block;width:48px;height:3px;margin:26px auto 0;border-radius:3px;background:linear-gradient(90deg,#4f46e5,#06b6d4)}
+.pb{margin-top:40px}
+@media (max-width:640px){.pb__grad{display:inline}}
+
+/* problem heading: lighter blue for second line */
+.pb__grad .w>span{background:linear-gradient(90deg,#3b82f6,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* AI card: realistic Google AI Overview */
+.gx{padding:14px;border-radius:16px;background:#fff;box-shadow:0 0 0 1px #e5e7eb}
+.gx .gs__bar{margin-bottom:8px}
+.gx__tabs{display:flex;gap:14px;padding:0 4px 8px;border-bottom:1px solid #ebebeb;font-size:12px}
+.gx__tabs b{font-weight:500;color:#5f6368}
+.gx__tabs b.on{color:#1a73e8;box-shadow:0 10px 0 -7px #1a73e8}
+.gx__aio{margin-top:12px}
+.gx__h{display:flex;align-items:center;gap:6px;font:600 13.5px/1 arial,sans-serif;color:#202124}
+.gx__h svg{width:18px;height:18px;fill:#4285f4}
+.gx__body{display:grid;grid-template-columns:1fr 128px;gap:12px;margin-top:10px}
+.gx__body p{font:13px/1.55 arial,sans-serif;color:#202124}
+.gx__body ul{margin:8px 0 0;padding-left:16px;font:12.5px/1.5 arial,sans-serif;color:#202124}
+.gx__body li{margin-top:4px}
+.gx__srcs{display:grid;gap:6px;align-content:start}
+.gx__srcs span{display:grid;grid-template-columns:16px 1fr;column-gap:6px;padding:7px;border-radius:10px;background:#f8f9fa;box-shadow:0 0 0 1px #ececec}
+.gx__srcs i{grid-row:span 2;display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:#e8eaed;font:700 8px/1 arial;font-style:normal;color:#5f6368}
+.gx__srcs b{font:500 10.5px/1.3 arial,sans-serif;color:#1a0dab;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gx__srcs small{font:10px/1.3 arial,sans-serif;color:#70757a}
+.gx__foot{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:12px;color:#5f6368}
+.gx__foot small{margin-left:auto;padding:5px 12px;border-radius:999px;background:#f1f3f4;font:500 11.5px arial,sans-serif}
+
+/* AI card: ChatGPT search */
+.cg{margin-top:14px;padding:14px;border-radius:16px;background:#fff;box-shadow:0 0 0 1px #e5e7eb}
+.cg__top{display:flex;align-items:center;gap:6px;font-size:13px;color:#0d0d0d}
+.cg__top span{margin-left:4px;padding:2px 8px;border-radius:999px;background:#f4f4f4;font-size:11px;color:#5d5d5d}
+.cg__q{margin:12px 0 0 auto;width:fit-content;max-width:80%;padding:8px 14px;border-radius:18px;background:#f4f4f4;font-size:13px;color:#0d0d0d}
+.cg__status{margin-top:10px;font-size:11.5px;color:#8f8f8f}
+.cg__a{margin-top:6px;font-size:13px;line-height:1.55;color:#0d0d0d}
+.cg__a ol{margin:6px 0 0;padding-left:18px}
+.cg__a li{margin-top:5px}
+.cg__cite{display:inline-block;margin-left:4px;padding:1px 7px;border-radius:999px;background:#f0f0f0;font-size:10.5px;color:#5d5d5d;vertical-align:1px}
+.cg__ask{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:7px 7px 7px 14px;border-radius:999px;box-shadow:0 0 0 1px #e5e5e5;font-size:12px;color:#8f8f8f}
+.cg__ask i{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#0d0d0d;color:#fff;font-style:normal;font-size:12px}
+@media (max-width:520px){.gx__body{grid-template-columns:1fr}.gx__srcs{grid-template-columns:repeat(3,1fr)}}
+
+/* problem: sky-blue rounded tag, solid blue second heading line */
+.pb__head .tag{background:#e0f2fe;color:#0369a1;border-radius:999px;padding:8px 18px}
+.pb__grad .w>span{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#2563eb}
+
+/* problem "Then": realistic Google results page */
+.gx--serp{font-family:arial,sans-serif}
+.sp__stats{margin:8px 4px 0;font-size:11px;color:#70757a}
+.sp__ad{margin-top:10px;padding:2px 4px 10px;border-bottom:1px solid #f1f3f4}
+.sp__ad>small b{font-size:11px;color:#202124}
+.sp__site{display:flex;align-items:center;gap:7px;margin-top:4px;font-size:12px;line-height:1.25;color:#202124}
+.sp__site i,.gs__res small i{flex:none}
+.sp__site i{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#f1f3f4;font:700 9px/1 arial;font-style:normal;color:#5f6368}
+.sp__site em{font-style:normal;font-size:11px;color:#4d5156}
+.sp__t{display:block;margin-top:4px;font:400 14.5px/1.3 arial,sans-serif;color:#1a0dab}
+.sp__ad p{margin:2px 0 0;font-size:12px;color:#4d5156}
+.sp__maps{margin:10px 0;border-radius:12px;overflow:hidden;box-shadow:0 0 0 1px #e5e7eb}
+.sp__map{position:relative;height:84px}
+.sp__map svg{width:100%;height:100%;display:block}
+.pin{position:absolute;display:grid;place-items:center;width:20px;height:20px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#ea4335;color:#fff;font:700 9px/1 arial}
+.sp__biz{display:grid;padding:7px 10px;border-top:1px solid #f1f3f4;font-size:11.5px;color:#4d5156}
+.sp__biz b{font:500 13px/1.3 arial,sans-serif;color:#1a0dab}
+.sp__biz em{font-style:normal;color:#e37400}
+.sp__biz small{color:#188038;font-size:11px}
+.pb__you2{background:#ecfdf5}
+.sp__links{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.sp__links span{padding:3px 9px;border-radius:999px;box-shadow:0 0 0 1px #dadce0;font-size:11px;color:#1a0dab}
+.sp__paa{display:grid;gap:0;margin-top:10px}
+.sp__paa>b{font:400 14px/1 arial;color:#202124;margin-bottom:6px}
+.sp__paa span{display:flex;justify-content:space-between;padding:8px 2px;border-top:1px solid #ebebeb;font-size:12.5px;color:#202124}
+.sp__paa span:last-child{border-bottom:1px solid #ebebeb}
+.sp__paa i{font-style:normal;color:#5f6368}
+.sp__imgs{margin-top:10px}
+.sp__imgs>b{font:400 14px/1 arial;color:#202124}
+.sp__imgs div{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:8px}
+.sp__imgs i{height:48px;border-radius:8px;background:linear-gradient(135deg,var(--c1),var(--c2))}
+
+/* problem: Then / Now cards equal height, inner panels aligned */
+.pb{align-items:stretch}
+.pb__card{height:100%}
+.pb__card>.gx{flex:1;display:flex;flex-direction:column}
+.gx--serp .gs__more{margin-top:auto;padding-top:12px}
+.gx__aio{flex:1}
+.pb__ok{margin-top:12px;padding:8px 12px;border-radius:10px;background:#ecfdf5;color:#059669;font-size:13.5px;font-weight:600;box-shadow:inset 0 0 0 1.5px #6ee7b7}
+/* problem cards: no pagination, status boxes pinned to the bottom, no empty band */
+.gx__aio{flex:none}
+.pb .gx>.pb__ok,.pb .gx>.pb__miss{margin-top:auto}
+.pb .gx>.gs__res:last-of-type{margin-bottom:12px}
+.pb .gx__foot{margin-bottom:12px}
+
+/* problem: Then/Now labels sit above each card; intro on 3 lines */
+.pb__col{display:flex;flex-direction:column;gap:12px;min-width:0}
+.pb__col>.pb__top{margin:0;padding:0 6px}
+.pb__col>.pb__card{flex:1}
+.pb__vs{margin-top:44px}
+.pb__head .lead{max-width:780px}
+@media (max-width:900px){.pb__vs{margin-top:0}}
+.pb__col>.pb__card{height:auto}

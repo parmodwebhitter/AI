@@ -678,6 +678,8 @@ copilotSuggestions.forEach(button => {
   const toggle = ba.querySelector('.ba__toggle');
   const swaps = ba.querySelectorAll('[data-off][data-on]');
   const num = ba.querySelector('.ba__num');
+  /* default state: With AI SEO (green) */
+  swaps.forEach(el => { el.textContent = el.dataset.on; });
   let timer, raf;
   const countTo = (from, to) => {
     cancelAnimationFrame(raf);

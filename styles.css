@@ -2592,3 +2592,56 @@ section.hero,section.trust,section.platforms,section.section,section.final{isola
 .vsx .cg--full .cg__srcs{margin-top:14px}
 .cg--full .cg__row{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .cg--full .cg__row .cg__q{margin:0}
+
+/* ===== services v2: four always-visible cards ===== */
+.sv2__head{margin-bottom:0}
+.sv2{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1060px;margin:44px auto 0}
+.sv2__card{display:flex;flex-direction:column;padding:28px;border:1px solid #e2e8f0;border-radius:24px;background:#fff;box-shadow:0 14px 36px rgba(15,23,42,.06);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.sv2__card:hover{transform:translateY(-4px);border-color:#bfdbfe;box-shadow:0 22px 50px rgba(37,99,235,.12)}
+.sv2__top{display:flex;align-items:center;justify-content:space-between}
+.sv2__n{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#e0f2fe;color:#0369a1;font:700 15px/1 var(--head)}
+.sv2__logos{display:flex;gap:6px}
+.sv2__logos img{width:30px;height:30px;padding:5px;border-radius:9px;background:#fff;box-shadow:0 0 0 1px #e2e8f0}
+.sv2__tagpill{padding:6px 12px;border-radius:999px;background:#eef2ff;color:#4338ca;font-size:12px;font-weight:600}
+.sv2__card h3{margin-top:18px;font-size:clamp(21px,2vw,25px);letter-spacing:-.02em;color:#0f172a}
+.sv2__card h3 a:hover{color:#2563eb}
+.sv2__what{margin-top:8px;color:#475569;font-size:16px;line-height:1.6}
+.sv2__lbl{margin-top:20px;font:600 12px/1 var(--head);letter-spacing:.08em;text-transform:uppercase;color:#64748b}
+.sv2__list{display:grid;gap:9px;margin:12px 0 0;padding:0;list-style:none}
+.sv2__list li{position:relative;padding-left:28px;font-size:15px;color:#1e293b;line-height:1.5}
+.sv2__list li::before{content:"\2713";position:absolute;left:0;top:1px;display:grid;place-items:center;width:19px;height:19px;border-radius:50%;background:#dcfce7;color:#16a34a;font-size:11px;font-weight:700}
+.sv2__res{margin-top:20px;padding:11px 14px;border-radius:12px;background:#eff6ff;color:#1e3a8a;font-size:14.5px}
+.sv2__res b{color:#2563eb}
+.sv2__card .chips{margin-top:auto;padding-top:18px}
+@media (max-width:860px){.sv2{grid-template-columns:1fr}}
+
+/* services: blue CTA band, white button and link */
+#services .svc-cta{max-width:1060px;margin:28px auto 0;padding:28px 34px;border:0;border-radius:24px;background:linear-gradient(135deg,#1d4ed8,#2563eb 60%,#0ea5e9);box-shadow:0 18px 44px rgba(37,99,235,.28)}
+#services .svc-cta h3{color:#fff;font-size:clamp(19px,2vw,24px)}
+#services .svc-cta .btn{background:#fff;color:#1d4ed8;box-shadow:0 8px 22px rgba(15,23,42,.18)}
+#services .svc-cta .btn:hover{background:#eff6ff}
+#services .svc-cta .btn svg{color:#1d4ed8}
+#services .svc-cta .link{color:#fff;border-color:rgba(255,255,255,.6)}
+#services .svc-cta .link svg{color:#fff}
+/* cards sized to their content */
+.sv2__card{padding:24px 26px}
+.sv2__card .chips{padding-top:16px}
+/* organic vs AI: no stretched gap inside the ChatGPT box; the Google card fills to match */
+.vsx .cg--full .cg__a{flex:none}
+.vsx .cg--full .cg__srcs{margin-top:10px}
+.vsx .cg--full{flex:none}
+
+/* services CTA band: solid white button, clearly readable */
+#services .svc-cta .btn,#services .svc-cta .btn.btn-lime{background:#fff !important;background-image:none !important;color:#1d4ed8 !important;border:0;font-weight:600;padding:15px 26px;border-radius:999px;box-shadow:0 10px 26px rgba(15,23,42,.22);opacity:1;filter:none}
+#services .svc-cta .btn::before,#services .svc-cta .btn::after{display:none !important}
+#services .svc-cta .btn:hover{background:#eff6ff !important;transform:translateY(-2px)}
+#services .svc-cta .btn svg{stroke:#1d4ed8;color:#1d4ed8;opacity:1}
+#services .svc-cta .cta-line{gap:22px;align-items:center}
+
+/* services heading: one line on desktop */
+#services .sv2__head{max-width:none}
+@media (min-width:1100px){
+  #services .sv2__head h2{font-size:clamp(34px,3.2vw,44px);white-space:nowrap}
+  #services .sv2__head .pb__grad{display:inline}
+}
+@media (min-width:1100px){#services .sv2__head .pb__grad{display:block}}

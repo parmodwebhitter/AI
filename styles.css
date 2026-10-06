@@ -2526,3 +2526,33 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .pb__head .lead{max-width:780px}
 @media (max-width:900px){.pb__vs{margin-top:0}}
 .pb__col>.pb__card{height:auto}
+
+/* ===== global: white sections, one full-width divider after each ===== */
+body{background:#fff}
+main>section,body>section,section.hero,section.trust,section.platforms,section.section,section.final{background:#fff !important;border-top:0 !important;border-bottom:1px solid #e5e7eb !important;box-shadow:none}
+.hero__grid-bg,#problem::before{display:none !important}
+.process .sec-head{background:#fff}
+.vs-section{margin-top:0}
+section.hero,section.trust,section.platforms,section.section,section.final{isolation:isolate}
+.footer{background:#fff;border-top:0}
+
+/* ===== before/after: heading like problem section ===== */
+#before-after .sec-head{max-width:860px;margin-left:auto;margin-right:auto;text-align:center}
+#before-after .tag{display:inline-flex;padding:8px 18px;border-radius:999px;background:#e0f2fe;color:#0369a1;font:600 12.5px/1 var(--body);letter-spacing:.08em}
+#before-after .tag::before{display:none}
+#before-after h2{font-size:clamp(30px,3.6vw,50px);line-height:1.12;letter-spacing:-.03em;color:#0f172a}
+.ba__hl{display:block;color:#16a34a}
+#before-after .sec-head .lead{max-width:620px;margin:18px auto 0;color:#475569;font-size:clamp(16px,1.3vw,18px)}
+@media (max-width:640px){.ba__hl{display:inline}}
+
+/* ===== before/after: "With AI SEO" state in green ===== */
+.ba{--good:#16a34a}
+.ba.is-on .ba__toggle{box-shadow:0 10px 30px rgba(22,163,74,.4),inset 0 2px 6px rgba(0,0,0,.15)}
+.ba.is-on .ba__ring{stroke:#16a34a}
+.ba.is-on .ba__bars em{color:#16a34a}
+.ba.is-on .ba__bars i::after{background:linear-gradient(90deg,#16a34a,#4ade80)}
+.ba.is-on .ba__points li::before{color:#16a34a}
+.ba.is-on .ba__metrics div{background:rgba(22,163,74,.07);color:#16a34a;border-color:rgba(22,163,74,.28)}
+.ba__list li.is-top{border-color:#16a34a;background:rgba(22,163,74,.06);box-shadow:0 8px 24px rgba(22,163,74,.12)}
+.ba__chip--top{background:#16a34a}
+.ba__toggle:focus-visible{outline-color:#16a34a}

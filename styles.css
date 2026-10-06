@@ -2683,3 +2683,21 @@ section.hero,section.trust,section.platforms,section.section,section.final{isola
 .process .sec-head .tag{margin-bottom:10px}
 .process .sec-head h2{font-size:clamp(26px,3vw,42px)}
 @media (min-width:700px){.process .h-acc{display:inline}}
+
+/* why us: blue heading line stays on one line on desktop */
+@media (min-width:900px){
+  #why-us .sec-head{max-width:1100px}
+  #why-us .sec-head h2.h-lg{font-size:clamp(28px,3.2vw,46px)}
+  #why-us .sec-head .h-acc{white-space:nowrap}
+}
+
+/* why us: same blue CTA band as services */
+#why-us .svc-cta{max-width:1060px;margin:36px auto 0;padding:28px 34px;border:0;border-radius:24px;background:linear-gradient(135deg,#1d4ed8,#2563eb 60%,#0ea5e9);box-shadow:0 18px 44px rgba(37,99,235,.28)}
+#why-us .svc-cta h3{color:#fff;font-size:clamp(19px,2vw,24px)}
+#why-us .svc-cta .btn,#why-us .svc-cta .btn.btn-lime{background:#fff !important;background-image:none !important;color:#1d4ed8 !important;border:0;font-weight:600;border-radius:999px;box-shadow:0 10px 26px rgba(15,23,42,.22)}
+#why-us .svc-cta .btn::before,#why-us .svc-cta .btn::after{display:none !important}
+#why-us .svc-cta .btn:hover{background:#eff6ff !important;transform:translateY(-2px)}
+#why-us .svc-cta .btn svg{stroke:#1d4ed8;color:#1d4ed8}
+#why-us .svc-cta .cta-line{gap:22px;align-items:center}
+#why-us .svc-cta .link{color:#fff;border-color:rgba(255,255,255,.6)}
+#why-us .svc-cta .link svg{color:#fff}

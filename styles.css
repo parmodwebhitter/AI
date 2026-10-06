@@ -2656,3 +2656,24 @@ section.hero,section.trust,section.platforms,section.section,section.final{isola
 .sv2__list li{display:flex;align-items:center;min-height:24px;padding-left:36px;font-size:15.5px;line-height:1.45}
 .sv2__list li::before{content:"";top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:#16a34a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center/14px no-repeat;box-shadow:0 0 0 4px #dcfce7}
 .sv2__card .chips{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ===== all section headings: sky-blue pill label + two-tone title, centered ===== */
+.sec-head{grid-template-columns:1fr;justify-items:center;text-align:center;gap:16px;max-width:900px;margin-left:auto;margin-right:auto}
+.sec-head>div{display:flex;flex-direction:column;align-items:center}
+.sec-head p.lead{max-width:640px;margin-left:auto;margin-right:auto;color:#475569}
+.sec-head .tag,.vs__head .tag,.pb__head .tag,.basics-section .tag{display:inline-flex;align-items:center;margin-bottom:18px;padding:8px 18px;border-radius:999px;background:#e0f2fe;color:#0369a1;font:600 12.5px/1 var(--body);letter-spacing:.08em;text-transform:uppercase}
+.sec-head .tag::before,.vs__head .tag::before,.pb__head .tag::before{display:none}
+.sec-head h2.h-lg,.sec-head--center h2{font-size:clamp(30px,3.6vw,50px);line-height:1.12;letter-spacing:-.03em;color:#0f172a}
+.h-acc{display:block;color:#2563eb}
+.h-in{color:#2563eb}
+.final h2.h-xl .h-acc{display:inline}
+@media (max-width:640px){.h-acc{display:inline}}
+.basics .h-acc{color:#7dd3fc}
+.basics .tag{margin-bottom:0}
+
+/* platforms heading: same pill label + two-tone title */
+.platforms__head .tag{display:inline-flex;align-items:center;margin-bottom:18px;padding:8px 18px;border-radius:999px;background:#e0f2fe;color:#0369a1;font:600 12.5px/1 var(--body);letter-spacing:.08em;text-transform:uppercase}
+.platforms__head .tag::before{display:none}
+.platforms__head h2{font-size:clamp(30px,3.6vw,50px);line-height:1.12;letter-spacing:-.03em;color:#0f172a}
+.platforms__head .lead{max-width:640px;margin-left:auto;margin-right:auto;color:#475569}
+.platforms__head .lead .hl{color:inherit;background:none}

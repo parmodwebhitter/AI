@@ -728,7 +728,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:54px;padding:0 26px;border-radius:999px;font:600 15.5px/1 var(--body);white-space:nowrap;transition:transform .3s var(--ease),background .3s,color .3s,border-color .3s,box-shadow .3s;overflow:hidden;isolation:isolate}
 .btn svg{width:18px;height:18px;transition:transform .35s var(--ease)}
-.btn:hover svg{transform:translateX(4px) rotate(-45deg)}
+.btn:hover svg{transform:translateX(4px)}
 .btn-lime{background:var(--lime);color:var(--lime-ink)}
 .btn-audit{background:var(--brand);color:#fff}
 .btn-audit::before{background:#3730a3}
@@ -1158,7 +1158,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .post__go svg{width:20px;height:20px}
 .post:hover{padding-left:16px}
 .post:hover h3{color:var(--lime-d)}
-.post:hover .post__go{background:var(--lime);border-color:var(--lime-d);color:var(--lime-ink);transform:rotate(-45deg)}
+.post:hover .post__go{background:var(--lime);border-color:var(--lime-d);color:var(--lime-ink);transform:translateX(4px)}
 .post__img{position:absolute;z-index:5;top:0;left:0;width:280px;aspect-ratio:600/340;border-radius:16px;overflow:hidden;pointer-events:none;opacity:0;transform:translate(var(--px,0),var(--py,0)) scale(.8) rotate(-4deg);transition:opacity .3s,transform .5s var(--out);box-shadow:0 30px 70px rgba(15,18,40,.28)}
 .post:hover .post__img{opacity:1;transform:translate(var(--px,0),var(--py,0)) scale(1) rotate(-2deg)}
 .post__img svg{width:100%;height:100%}
@@ -1560,7 +1560,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .basics__list b{display:block;color:#fff;font:600 16px/1.35 var(--head);letter-spacing:-.01em}
 .basics__list a{display:inline-flex;align-items:center;gap:6px;margin-top:8px;color:var(--lime);font-size:14px;font-weight:500}
 .basics__list a svg{width:14px;height:14px;transition:transform .3s var(--ease)}
-.basics__list a:hover svg{transform:translateX(3px) rotate(-45deg)}
+.basics__list a:hover svg{transform:translateX(3px)}
 @media (max-width:960px){.basics{grid-template-columns:1fr;gap:36px}}
 @media (max-width:640px){.basics{border-radius:var(--r-lg)}.basics__list li{padding:16px}}
 /* basics: align both columns to the top; side heading sits on the tag line */
@@ -1634,7 +1634,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .ben__card a{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:14px;font-weight:600;color:var(--text)}
 .ben__card a svg{width:14px;height:14px;transition:transform .3s var(--ease)}
 .ben__card a:hover{color:var(--lime-d)}
-.ben__card a:hover svg{transform:translateX(3px) rotate(-45deg)}
+.ben__card a:hover svg{transform:translateX(3px)}
 @media (max-width:960px){.ben{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.ben{grid-template-columns:1fr}.ben__card{padding:22px}}
 
@@ -1664,7 +1664,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .ind__more svg{width:14px;height:14px;transition:transform .3s var(--ease)}
 .ind a:hover{border-color:var(--lime);box-shadow:0 20px 50px rgba(11,27,63,.08);transform:translateY(-3px)}
 .ind a:hover .ind__n{color:var(--lime)}
-.ind a:hover .ind__more svg{transform:translateX(3px) rotate(-45deg)}
+.ind a:hover .ind__more svg{transform:translateX(3px)}
 .ind__foot{display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:36px}
 @media (max-width:960px){.ind{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.ind{grid-template-columns:1fr}.ind a{padding:22px 20px}}
@@ -1696,7 +1696,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .flip__back p{margin-top:18px;font-size:15.5px;line-height:1.6;color:#e4e6ec}
 .flip__back a{display:inline-flex;align-items:center;gap:6px;margin-top:auto;font-weight:600;font-size:14.5px;color:var(--lime)}
 .flip__back a svg{width:14px;height:14px;transition:transform .3s var(--ease)}
-.flip__back a:hover svg{transform:translateX(3px) rotate(-45deg)}
+.flip__back a:hover svg{transform:translateX(3px)}
 @media (hover:none){.flip__hint{font-size:0}.flip__hint::after{content:"Tap to see what we fix";font-size:13px}}
 @media (prefers-reduced-motion:reduce){.flip__inner{transition:none}}
 @media (max-width:960px){.flips{grid-template-columns:1fr 1fr}}
@@ -1720,7 +1720,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .pillar__note{margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.5}
 .pillar>a{display:inline-flex;align-items:center;gap:6px;margin-top:auto;padding-top:22px;font-size:14px;font-weight:600;color:var(--lime-d)}
 .pillar>a svg{width:14px;height:14px;transition:transform .3s var(--ease)}
-.pillar>a:hover svg{transform:translateX(3px) rotate(-45deg)}
+.pillar>a:hover svg{transform:translateX(3px)}
 @media (max-width:1100px){.pillars{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.pillars{grid-template-columns:1fr}}
 
@@ -1753,7 +1753,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .tool p{margin-top:10px;flex:1;font-size:14.5px;color:var(--muted);line-height:1.6}
 .tool>a{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:14px;font-weight:600;color:var(--lime-d)}
 .tool>a svg{width:14px;height:14px;transition:transform .3s var(--ease)}
-.tool>a:hover svg{transform:translateX(3px) rotate(-45deg)}
+.tool>a:hover svg{transform:translateX(3px)}
 .tools__foot{display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:40px;text-align:center}
 .tools__row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 20px}
 @media (max-width:960px){.tools{grid-template-columns:1fr 1fr}}
@@ -1912,7 +1912,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;ba
 .proj__meta b{font:700 18px/1 var(--head);color:var(--text)}
 .proj>a{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:14px;font-weight:600;color:var(--lime-d)}
 .proj>a svg{width:14px;height:14px;transition:transform .3s var(--ease)}
-.proj>a:hover svg{transform:translateX(3px) rotate(-45deg)}
+.proj>a:hover svg{transform:translateX(3px)}
 .projs__nav{display:flex;align-items:center;gap:18px;margin-top:8px}
 .projs__bar{flex:1;height:2px;border-radius:2px;background:var(--line-2);overflow:hidden}
 .projs__bar span{display:block;height:100%;width:50%;background:var(--lime-d);transform-origin:left;transition:transform .3s}
@@ -2768,3 +2768,9 @@ section.hero,section.trust,section.platforms,section.section,section.final{isola
 .ben__card:hover,.sp-ben__card:hover{border-color:rgba(15,23,42,.05);transform:translateY(-6px);box-shadow:0 -10px 28px -8px color-mix(in srgb,var(--ic) 45%,transparent),0 18px 36px rgba(15,23,42,.08)}
 .ben__card:hover::before,.sp-ben__card:hover::before{transform:scaleX(1)}
 @media (prefers-reduced-motion:reduce){.ben__card,.sp-ben__card,.ben__card::before,.sp-ben__card::before{transition:none}}
+
+/* CTAs (problem section onwards): hover keeps the same blue, only the arrow moves right */
+.btn-cta.btn-lime::before,.btn-cta.btn-lime::after{display:none}
+.btn-cta.btn-lime:hover{background:var(--lime);color:var(--lime-ink)}
+.btn-cta:hover svg,#services .svc-cta .btn-cta:hover svg,#why-us .svc-cta .btn-cta:hover svg{transform:translateX(5px)}
+#services .svc-cta .btn-cta:hover,#why-us .svc-cta .btn-cta:hover{transform:none}
